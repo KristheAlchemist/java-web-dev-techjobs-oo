@@ -16,15 +16,13 @@ public class JobTest {
         emptyJobTwo = new Job();
         testJobOne = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         testJobTwo = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        testJobThree = new Job("Product tester", new Employer(null), new Location(null), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        testJobThree = new Job("Product tester", new Employer(""), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
     }
 
     @Test
     public void testSettingJobId() {
         assertEquals(1, emptyJobTwo.getId() - emptyJobOne.getId(), .001);
-        assertFalse(emptyJobOne.getId() == emptyJobTwo.getId());
-        assertTrue(emptyJobOne.getId() < emptyJobTwo.getId());
     }
 
     @Test
@@ -43,6 +41,10 @@ public class JobTest {
 
     @Test
     public void testToString() {
+
+        assertTrue(testJobOne.toString().startsWith("\n"));
+        assertTrue(testJobOne.toString().endsWith("\n"));
+
         assertEquals(testJobOne.toString(), "\n" + "ID: 3\n"
                 + "Name: Product tester\n"
                 + "Employer: ACME\n"
@@ -57,7 +59,7 @@ public class JobTest {
                 + "Position Type: Quality control\n"
                 + "Core Competency: Persistence\n");
 
-//        assertEquals(emptyJobOne.toString(), "OOPS! This job does not seem to exist.");
+        assertEquals(emptyJobOne.toString(), "OOPS! This job does not seem to exist.");
     };
 
 }

@@ -34,23 +34,20 @@ public class Job {
 
     @Override
     public String toString() {
-////        if (this) {
-////            return "\nOOPS! This job does not seem to exist.\n"
-////        }
-//        Field[] fields = this.getClass().getDeclaredFields();
-//        for (Field field : fields) {
-////            if (field.getName().isEmpty()) {
-////                return "Data not available";
-////            };
-//        }
+        String value;
 
-        String value = "\n" + "ID: " + this.getId() + "\n"
-                + "Name: " + this.getName() + "\n"
-                + "Employer: " + this.getEmployer() + "\n"
-                + "Location: " + this.getLocation() + "\n"
-                + "Position Type: " + this.getPositionType() + "\n"
-                + "Core Competency: " + this.getCoreCompetency() + "\n";
+        try {
 
+            value = "\nID: " + id + "\n"
+                    + "Name: " + (name.isEmpty() ? "Data not available" : name) + "\n"
+                    + "Employer: " + (employer.getValue().isEmpty() ? "Data not available" : employer) + "\n"
+                    + "Location: " + (location.getValue().isEmpty() ? "Data not available" : location) + "\n"
+                    + "Position Type: " + (positionType.getValue().isEmpty() ? "Data not available" : positionType) + "\n"
+                    + "Core Competency: " + (coreCompetency.getValue().isEmpty() ? "Data not available" : coreCompetency) + "\n";
+
+        } catch (NullPointerException e) {
+            value = "OOPS! This job does not seem to exist.";
+        }
         return value;
     }
 
